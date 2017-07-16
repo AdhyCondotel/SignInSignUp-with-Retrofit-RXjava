@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Latihan Produk Detail</string>
+    <string name="dialog_action_ok">Ok</string>
+    <string name="button_signin">Login Now</string>
+</resources>

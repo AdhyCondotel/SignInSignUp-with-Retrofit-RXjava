@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "com.ammase.latihanprodukdetail"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"https://x.eprint.id\"")
+        jackOptions {
+            enabled true
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+ext {
+    supportLibraryVersion = '25.3.1'
+    supportLibraryVersionRetrofit = '2.2.0'
+    supportLibraryVersionRXjava = '2.0.1'
+}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:support-v4:$supportLibraryVersion"
+    compile "com.android.support:design:$supportLibraryVersion"
+    compile "com.android.support:cardview-v7:$supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
+    compile "com.android.support:percent:$supportLibraryVersion"
+
+    compile "com.squareup.retrofit2:retrofit:$supportLibraryVersionRetrofit"
+    compile "com.squareup.retrofit2:converter-gson:$supportLibraryVersionRetrofit"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$supportLibraryVersionRetrofit"
+
+    compile "io.reactivex.rxjava2:rxjava:$supportLibraryVersionRXjava"
+    compile "io.reactivex.rxjava2:rxandroid:$supportLibraryVersionRXjava"
+
+
+    compile 'com.jude:rollviewpager:1.4.5'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+}
