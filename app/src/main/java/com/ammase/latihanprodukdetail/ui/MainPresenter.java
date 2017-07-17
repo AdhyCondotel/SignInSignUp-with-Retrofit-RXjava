@@ -20,10 +20,10 @@ public class MainPresenter {
         this.view = view;
     }
 
-    public void Loaddata() {
+    public void Loaddata(String token) {
         RequestAPI requestAPI = NetworkClient.getRetrofit().create(RequestAPI.class);
         if (mCompositeDisposable == null) mCompositeDisposable = new CompositeDisposable();
-        mCompositeDisposable.add(requestAPI.getUser()
+        mCompositeDisposable.add(requestAPI.getUser("Bearer "+token)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(
@@ -35,10 +35,12 @@ public class MainPresenter {
 
     private void combineSuccessObserver(ResponseGetListUser responseAuth) {
         view.handleUserSuccess(responseAuth);
+
     }
 
     private void combineErrorObserver(Throwable throwable) {
-        view.handleUserError(throwable);
+        view.handleUserError(throwable.getLocalizedMessage().toString());
+      //  view.handleRegisError(throwable.getLocalizedMessage().toString());
 
     }
 

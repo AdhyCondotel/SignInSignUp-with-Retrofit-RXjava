@@ -61,7 +61,11 @@ public class SignInActivity extends AppCompatActivity implements SignInView {
     @Override
     public void handleLoginSuccess(ResponseGetLogin responseAuth) {
         Toast.makeText(getApplicationContext(), "Token : "+responseAuth.getMeta().getToken(), Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this, MainActivity.class));
+        //startActivity(new Intent(this, MainActivity.class));
+
+        Intent room = new Intent(getApplicationContext(), MainActivity.class);
+            room.putExtra("token",responseAuth.getMeta().getToken());
+        startActivity(room);
     }
 
     @Override

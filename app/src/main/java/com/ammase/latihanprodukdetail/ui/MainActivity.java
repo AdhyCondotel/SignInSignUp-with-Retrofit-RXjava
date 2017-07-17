@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.ammase.latihanprodukdetail.R;
 import com.ammase.latihanprodukdetail.adapter.adapterListUser;
 import com.ammase.latihanprodukdetail.model.listuser.ResponseGetListUser;
@@ -22,7 +25,8 @@ public class MainActivity extends AppCompatActivity implements MainView{
         ButterKnife.bind(this);
         init();
         presenter = new MainPresenter(this);
-        presenter.Loaddata();
+        presenter.Loaddata(getIntent().getStringExtra("token"));
+        Log.i("TOKENKU :", getIntent().getStringExtra("token"));
     }
 
     private void init() {
@@ -42,7 +46,8 @@ public class MainActivity extends AppCompatActivity implements MainView{
     }
 
     @Override
-    public void handleUserError(Throwable throwable) {
+    public void handleUserError(String throwable) {
+        Toast.makeText(getApplicationContext(), "Error : "+throwable.toString(), Toast.LENGTH_SHORT).show();
 
     }
 }

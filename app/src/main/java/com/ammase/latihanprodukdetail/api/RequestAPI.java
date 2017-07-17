@@ -7,9 +7,11 @@ import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface RequestAPI {
+    String a="";
     @FormUrlEncoded
     @POST("/m/register")
     Observable<ResponseAuth> register(@Field("name") String name,
@@ -22,6 +24,6 @@ public interface RequestAPI {
                                        @Field("password") String password);
 
     @GET("/m/users")
-    Observable<ResponseGetListUser> getUser();
+    Observable<ResponseGetListUser> getUser(@Header("Authorization") String token);
 
 }

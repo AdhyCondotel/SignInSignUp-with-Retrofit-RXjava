@@ -8,5 +8,5 @@ import com.ammase.latihanprodukdetail.model.listuser.ResponseGetListUser;
 public interface MainView {
     void handleUserSuccess(ResponseGetListUser responseAuth);
 
-    void handleUserError(Throwable throwable);
+    void handleUserError(String throwable);
 }
